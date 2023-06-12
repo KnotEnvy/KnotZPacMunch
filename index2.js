@@ -26,6 +26,7 @@ class Player {
     constructor({position, velocity}) {
         this.position = position;
         this.velocity = velocity;
+        this.speed = 5
         this.radius = 15;
         this.radians = 0.75;
         this.openRate = 0.12;
@@ -159,8 +160,8 @@ const powerUps = []
 const ghosts = [
 new Ghost({
     position: {
-        x: Boundary.width * 6 + Boundary.width * 0.5,
-        y: Boundary.height + Boundary.height * 0.5
+        x: Boundary.width * 8 + Boundary.width * 0.5,
+        y: Boundary.height * 14 + Boundary.height * 0.5
     },
     velocity: {
         x: Ghost.speed,
@@ -169,8 +170,8 @@ new Ghost({
 }),
 new Ghost({
     position: {
-        x: Boundary.width * 6 + Boundary.width * 0.5,
-        y: Boundary.height* 3 + Boundary.height * 0.5
+        x: Boundary.width * 12 + Boundary.width * 0.5,
+        y: Boundary.height* 14 + Boundary.height * 0.5
     },
     velocity: {
         x: Ghost.speed,
@@ -180,8 +181,8 @@ new Ghost({
 }),
 new Ghost({
     position: {
-        x: Boundary.width * 6 + Boundary.width * 0.5,
-        y: Boundary.height* 5 + Boundary.height * 0.5
+        x: Boundary.width * 14 + Boundary.width * 0.5,
+        y: Boundary.height* 8 + Boundary.height * 0.5
     },
     velocity: {
         x: Ghost.speed,
@@ -191,8 +192,8 @@ new Ghost({
 }),
 new Ghost({
     position: {
-        x: Boundary.width * 8 + Boundary.width * 0.5,
-        y: Boundary.height + Boundary.height * 0.5
+        x: Boundary.width * 10 + Boundary.width * 0.5,
+        y: Boundary.height *11+ Boundary.height * 0.5
     },
     velocity: {
         x: Ghost.speed,
@@ -233,27 +234,27 @@ let score = 0
 
 //Game Levels (can make in tiled)
 const map = [
-    ['1', '-', '-', '-', '-', '-', '-', '-', '-', '-', '2'],
-    ['|', '.', '.', '.', '.', '_', '.', '.', '.', 'p', '|'],
-    ['|', '.', '[', ']', '.', '.', '.', '[', ']', '.', '|'],
-    ['|', '.', '.', '.', '.', '^', '.', '.', '.', '.', '|'],
-    ['|', '.', 'b', '.', '[', '+', ']', '.', 'b', '.', '|'],
-    ['|', '.', '.', '.', '.', '_', '.', '.', '.', '.', '|'],
-    ['|', '.', '[', ']', '.', '.', '.', '[', ']', '.', '|'],
-    ['|', '.', '.', '.', '.', '^', '.', '.', '.', '.', '|'],
-    ['|', '.', 'b', '.', '[', '5', ']', '.', 'b', '.', '|'],
-    ['|', '.', '.', '.', '.', '.', '.', '.', '.', '.', '|'],
-    ['|', '.', 'b', '.', '[', '7', ']', '.', 'b', '.', '|'],
-    ['|', '.', '.', '.', '.', '_', '.', '.', '.', '.', '|'],
-    ['|', '.', '[', ']', '.', '.', '.', '[', ']', '.', '|'],
-    ['|', '.', '.', '.', '.', '^', '.', '.', '.', '.', '|'],
-    ['|', '.', 'b', '.', '[', '+', ']', '.', 'b', '.', '|'],
-    ['|', '.', '.', '.', '.', '_', '.', '.', '.', '.', '|'],
-    ['|', '.', '[', ']', '.', '.', '.', '[', ']', '.', '|'],
-    ['|', '.', '.', '.', '.', '^', '.', '.', '.', '.', '|'],
-    ['|', '.', 'b', '.', '[', '5', ']', '.', 'b', '.', '|'],
-    ['|', 'p', '.', '.', '.', '.', '.', '.', '.', 'p', '|'],
-    ['4', '-', '-', '-', '-', '-', '-', '-', '-', '-', '3']
+    ['10','15','15','15','15','15','15','15','15','15','15','15','15','15','15','15','15','15','15','15','11'],
+    ['16','.','.','.','.','.','.','2','15','15','15','15','15','3','.','.','.','.','.','p','16'],
+    ['16','.','10','5','5','11','.','.','.','.','.','.','.','.','.','10','5','5','11','.','16'],
+    ['16','.','13','9','9','12','.','4','.','2','15','3','.','4','.','13','9','9','12','.','16'],
+    ['16','.','.','.','.','.','.','1','.','.','.','.','.','1','.','.','.','.','.','.','16'],
+    ['16','.','2','15','15','3','.','.','.','2','15','3','.','.','.','2','15','15','3','.','16'],
+    ['16','.','.','.','.','.','.','4','.','.','.','.','.','4','.','.','.','.','.','.','16'],
+    ['16','3','.','2','3','.','2','14','3','.','0','.','2','14','3','.','2','3','.','0','16'],
+    ['16','.','.','.','.','.','.','1','.','.','.','.','.','1','.','.','.','.','.','.','16'],
+    ['16','.','2','15','15','3','.','.','.','2','5','3','.','.','.','2','15','15','3','.','16'],
+    ['16','.','.','.','.','.','.','4','.','.','1','.','.','4','.','.','.','.','.','.','16'],
+    ['16','.','2','15','3','.','2','9','3','.','.','.','2','9','3','.','2','15','3','.','16'],
+    ['16','.','.','.','.','.','.','.','.','.','4','.','.','.','.','.','.','.','.','.','16'],
+    ['16','0','.','0','.','0','.','0','.','2','14','3','.','0','.','0','.','0','.','0','16'],
+    ['16','.','.','.','.','.','.','.','.','.','1','.','.','.','.','.','.','.','.','.','16'],
+    ['16','.','0','.','10','11','.','10','11','.','.','.','10','11','.','10','11','.','0','.','16'],
+    ['16','.','.','.','13','12','.','8','9','3','.','2','9','7','.','13','12','.','.','.','16'],
+    ['16','.','4','.','.','.','.','1','.','.','.','.','.','1','.','.','.','.','4','.','16'],
+    ['16','.','1','.','2','3','.','.','.','2','15','3','.','.','.','2','3','.','1','.','16'],
+    ['16','p','.','.','.','.','.','0','.','.','.','.','.','0','.','.','.','.','.','p','16'],
+    ['13','15','15','15','15','15','15','15','15','15','15','15','15','15','15','15','15','15','15','15','12']
   ]
   
 function createImage(src) {
@@ -263,22 +264,23 @@ function createImage(src) {
 }
 
 const boundaryFactory = {
-    '-': './pics/pipehorizontal.png',
-    '|': './pics/pipeVertical.png',
-    '1': './pics/pipecorner1.png',
-    '2': './pics/pipecorner2.png',
-    '3': './pics/pipecorner3.png',
-    '4': './pics/pipecorner4.png',
-    'b': './pics/block.png',
-    '[': './pics/capLeft.png',
-    ']': './pics/capRight.png',
-    '_': './pics/capBottom.png',
-    '^': './pics/capTop.png',
-    '+': './pics/pipeCross.png',
-    '5': './pics/pipeConnectorTop.png',
-    '6': './pics/pipeConnectorRight.png',
-    '7': './pics/pipeConnectorBottom.png',
-    '8': './pics/pipeConnectorLeft.png'
+    '0': './pics/block.png',
+    '1': './pics/capBottom.png',
+    '2': './pics/capLeft.png',
+    '3': './pics/capRight.png',
+    '4': './pics/capTop.png',
+    '5': './pics/pipeConnectorBottom.png',
+    '6': './pics/pipeConnectorDownwards.png',
+    '7': './pics/pipeConnectorLeft.png',
+    '8': './pics/pipeConnectorRight.png',
+    '9': './pics/pipeConnectorTop.png',
+    '10': './pics/pipecorner1.png',
+    '11': './pics/pipecorner2.png',
+    '12': './pics/pipecorner3.png',
+    '13': './pics/pipecorner4.png',
+    '14': './pics/pipeCross.png',
+    '15': './pics/pipehorizontal.png',
+    '16': './pics/pipeVertical.png',
   };
   
 
@@ -519,7 +521,7 @@ function animate(){
                 player.velocity.y = 0
                 break
             } else {
-                player.velocity.y = -5
+                player.velocity.y = -player.speed
             }
         }
     } else if (keys.a.pressed && lastKey === 'a') {
@@ -535,7 +537,7 @@ function animate(){
                 player.velocity.x = 0
                 break
             } else {
-                player.velocity.x = -5
+                player.velocity.x = -player.speed
             }
         }
     } else if (keys.s.pressed && lastKey === 's') {
@@ -551,7 +553,7 @@ function animate(){
                 player.velocity.y = 0
                 break
             } else {
-                player.velocity.y = 5
+                player.velocity.y = player.speed
             }
         }
     } else if (keys.d.pressed && lastKey === 'd') {
@@ -567,7 +569,7 @@ function animate(){
                 player.velocity.x = 0
                 break
             } else {
-                player.velocity.x = 5
+                player.velocity.x = player.speed
             }
         }
     }
